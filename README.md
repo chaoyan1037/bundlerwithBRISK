@@ -1,6 +1,7 @@
-I use BRISK to detect and match feature point, and use the original 
+I use BRISK to detect and match feature point, and use the original
 bundlder pipeline to generate point cloud.
--------------------------------------------------------------------
+
+
 
 Bundler User's Manual
 ---------------------
