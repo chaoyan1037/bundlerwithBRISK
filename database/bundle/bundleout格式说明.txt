@@ -1,0 +1,50 @@
+The bundle files contain the estimated scene and camera geometry have the following format:
+
+# Bundle file v0.3
+<num_cameras> <num_points>   [two integers]
+<camera1>
+<camera2>
+ ...
+<cameraN>
+<point1>
+<point2>
+ ...
+<pointM>
+
+Each camera entry contains the estimated camera intrinsics and extrinsics, and has the form:
+
+<f> <k1> <k2>   [the focal length, followed by two radial distortion coeffs]
+<R>             [a 3x3 matrix representing the camera rotation]
+<t>             [a 3-vector describing the camera translation]
+
+The cameras are specified in the order they appear in the list of images.
+
+Each point entry has the form:
+
+<position>      [a 3-vector describing the 3D position of the point]
+<color>         [a 3-vector describing the RGB color of the point]
+<view list>     [a list of views the point is visible in]
+
+The view list begins with the length of the list (i.e., the number of cameras the point is visible in). The list is then given as a list of quadruplets , where is a camera index, the index of the SIFT keypoint where the point was detected in that camera, and and are the detected positions of that keypoint. Both indices are 0-based (e.g., if camera 0 appears in the list, this corresponds to the first camera in the scene file and the first image in "list.txt").
+
+We use a pinhole camera model; the parameters we estimate for each camera are a focal length (f), two radial distortion parameters (k1 and k2), a rotation (R), and translation (t), as described in the file specification above. The formula for projecting a 3D point X into a camera (R, t, f) is:
+
+P = R * X + t       (conversion from world to camera coordinates)
+p = -P / P.z        (perspective division)
+p' = f * r(p) * p   (conversion to pixel coordinates)
+
+where P.z is the third coordinate of P. In the last equation, r(p) is a function that computes a scaling factor to undo the radial distortion:
+
+r(p) = 1.0 + k1 * ||p||^2 + k2 * ||p||^4.
+
+This gives a projection in pixels, where the origin of the image is the center of the image, the positive x-axis points right, and the positive y-axis points up (in addition, in the camera coordinate system, the positive z-axis points backwards, so the camera is looking down the negative z-axis, as in OpenGL).
+
+Finally, the equations above imply that the camera viewing direction is:
+
+R' * [0 0 -1]'  (i.e., the third row of R or third column of R')
+
+(where ' indicates the transpose of a matrix or vector).
+
+and the 3D position of a camera is
+
+-R' * t .

@@ -1,0 +1,2 @@
+database/images/query/0.jpg
+database/images/query/1.jpg
