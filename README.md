@@ -1,3 +1,7 @@
+I use BRISK to detect and match feature point, and use the original 
+bundlder pipeline to generate point cloud.
+-------------------------------------------------------------------
+
 Bundler User's Manual
 ---------------------
 written by Noah Snavely (snavely@cs.cornell.edu)
