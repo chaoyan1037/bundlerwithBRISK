@@ -58,7 +58,7 @@ public:
     // float m_scale, m_ori;     /* Scale and orientation (range [-PI,PI]) */
     unsigned char m_r, m_g, m_b; /* Color of this key */
 
-    int m_extra;  /* 4 bytes of extra storage */
+    int m_extra;  /* 4 bytes of extra storage, belong to which 3D point */
     int m_track;  /* Track index this point corresponds to */
 };
 
