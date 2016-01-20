@@ -45,7 +45,7 @@ public:
     void Write(FILE *f);
 
     ImageKeyVector m_views;
-    int m_extra;
+    int m_extra;//belong to which pts_views vector
 };
 
 class PlaneData;

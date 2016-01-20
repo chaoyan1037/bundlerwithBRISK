@@ -258,24 +258,24 @@ void BundlerApp::BundleAdjustFast()
                    (parent_idx == -1 ? -1 : added_order[parent_idx]));
 
 	    /* **** Set up the new camera **** */
-            bool success = false;
-            camera_params_t camera_new = 
-			BundleInitializeImage(m_image_data[next_idx], 
-				      next_idx, 
-                      curr_num_cameras + image_count,
-				      curr_num_cameras, curr_num_pts,
-				      added_order, points, 
-				      NULL, cameras, 
-				      pt_views, &success);
+        bool success = false;
+        camera_params_t camera_new = 
+		BundleInitializeImage(m_image_data[next_idx], 
+				    next_idx, 
+                    curr_num_cameras + image_count,
+				    curr_num_cameras, curr_num_pts,
+				    added_order, points, 
+				    NULL, cameras, 
+				    pt_views, &success);
 
-            if (success) {
-                cameras[curr_num_cameras+image_count] = camera_new;
-                image_count++;
-            } else {
-                printf("[BundleAdjust] Couldn't initialize image %d\n",
-                       next_idx);
-                m_image_data[next_idx].m_ignore_in_bundle = true;
-            }
+        if (success) {
+            cameras[curr_num_cameras+image_count] = camera_new;
+            image_count++;
+        } else {
+            printf("[BundleAdjust] Couldn't initialize image %d\n",
+                    next_idx);
+            m_image_data[next_idx].m_ignore_in_bundle = true;
+        }
 	}
 	
 
@@ -348,7 +348,7 @@ void BundlerApp::BundleAdjustFast()
 	}
 
 	round++;
-    }
+    }//while
 
     clock_t end = clock();
 
