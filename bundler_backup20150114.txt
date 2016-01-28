@@ -1,8 +1,0 @@
-20151225
-1. 在windows8 下面用VS2013编译，然后将生成的bundler.exe等五个文件拷贝到bin目录下。
-用Cygwin执行RunBundler.sh脚本。
-
-2.key相关的文件添加了注释。工程属性中添加了输入参数，可直接Debug。
-
-20160114
-1.把BRISK描述子的检测、匹配等功能加入了bundler工程。

@@ -1214,7 +1214,7 @@ void BaseApp::ReadCameraConstraints()
 	    sscanf(buf, "%d %lf %lf %lf %lf %lf %lf", 
 		   &cam_idx, &x, &y, &z, &xw, &yw, &zw);
 
-	    printf("  Constraints on camera %d: %0.3f, %0.3f, %0.3f\n"
+	    printf(" Constraints on camera %d: %0.3f, %0.3f, %0.3f\n"
 		   "    (weights %0.3f, %0.3f, %0.3f)\n", 
 		   cam_idx, x, y, z, xw, yw, zw);
 

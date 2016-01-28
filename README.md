@@ -1,6 +1,11 @@
 I use BRISK to detect and match feature point, and use the original
 bundlder pipeline to generate point cloud.
-
+The PreBundler contains the code that use OpenCV to detect BRISK 
+feature points and descriptors, I modified the original .sh script
+to use my PreBundler to do the feature points description task.
+	
+To use the software, you should install cygwin on windows, then you
+can use it as before. If you need help please contact me.
 
 
 Bundler User's Manual

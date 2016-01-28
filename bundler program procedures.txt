@@ -1,0 +1,38 @@
+main()
+	bundler_app->OnInit();
+		ProcessOptions(argc - 1, argv + 1);
+		LoadImageNamesFromFile(f);//f="list.txt"//读取list.txt里的文件名
+		BundleAdjustFast();
+			ComputeGeometricConstraints();//读取constrains.txt里面的信息，构造track信息
+				LoadMatches();
+					LoadMatchTable(m_match_table);//读取matches.init.txt的内容
+					PruneDoubleMatches();//去掉一对多的匹配，保留最佳匹配
+				WriteMatchTable(".prune");
+				LoadKeys(false);//without descriptors
+					ReadKeyFile()
+				ComputeEpipolarGeometry(true, new_image_start);//通过外积几何约束去掉外点
+				ComputeTransforms(false, new_image_start);//只计算基础矩阵
+				MakeMatchListsSymmetric();
+				WriteMatchTable(".ransac");
+				ComputeTracks(new_image_start);
+				WriteGeometricConstraints(filename);
+				WriteMatchTable(".corresp");
+				
+			InitializeBundleAdjust();
+			BundlePickInitialPair(i_best, j_best, true);//挑选出最好的两张图
+				GetNumTrackMatches(i, j);//得到两幅图片中共同点的数目
+			SetupInitialCameraPair()
+			DumpOutputFile(..."bundle.init.out"...)
+			
+			RunSFM();/* Run sfm for the first time */
+			DumpPointsToPly("points001.ply")
+			DumpOutputFile()
+			
+            FindCameraWithMostMatches()/* Find the camera with the most matches to existing points */
+			FindCamerasWithNMatches()
+			BundleAdjustAddAllNewPoints()
+			
+			
+			
+			
+			
