@@ -1028,7 +1028,7 @@ int main(int argc, char **argv)
 {
     // mtrace();
 
-	//char* temp[4] = {"D:\bundler\vc++\Debug\Bundler.exe","..//examples//ET//list.txt", "--options_file", "..//examples//ET//options.txt" };
+	//char* argv[4] = { "D:/bundler/vc++/Debug/Bundler.exe", "./list.txt", "--options_file", "./options.txt" };
 	fprintf(stdout,"%s: bundler main.\n", argv[0]);
 	fflush(stdout);
 
