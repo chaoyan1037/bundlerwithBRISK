@@ -21,7 +21,7 @@ public:
 	bool WriteConvertedKey( std::string &s);
 	bool ConvertAll(std::vector<std::string> &vs);
 
-private:
+//private:
 
 	std::string desc_feat_filepath;
 	std::string key_filepath;

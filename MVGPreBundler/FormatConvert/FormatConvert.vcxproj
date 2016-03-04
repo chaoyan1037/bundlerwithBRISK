@@ -12,10 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="convertDesc.h" />
+    <ClInclude Include="convertBundle.h" />
     <ClInclude Include="parsejson.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="convertDesc.cpp" />
+    <ClCompile Include="convertBundle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parsejson.cpp" />
   </ItemGroup>
@@ -44,11 +46,9 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="D:\Program Files\opencv\opencv310.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="D:\Program Files\opencv\opencv310.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
