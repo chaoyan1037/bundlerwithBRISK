@@ -18,7 +18,7 @@ public:
 
 	bool ReadDesc( std::string &s);
 	bool ReadFeat( std::string &s);
-	bool WriteConvertedKey( std::string &s);
+	bool WriteConvertedKey(std::string fp, std::string s);
 	bool ConvertAll(std::vector<std::string> &vs);
 
 //private:

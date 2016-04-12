@@ -60,8 +60,9 @@ bool DescFeatConvert::ReadFeat(std::string &s)
 	}
 	return 1;
 }
-bool DescFeatConvert::WriteConvertedKey(std::string &s)
+bool DescFeatConvert::WriteConvertedKey(std::string fp, std::string s)
 {
+	s = fp + s;
 	s.erase(s.end() - 3, s.end());
 	s += "key";
 	ofstream keyfile(s);
@@ -70,6 +71,7 @@ bool DescFeatConvert::WriteConvertedKey(std::string &s)
 		cout << "Open key file failed: " << s << endl;
 		return 0;
 	}
+
 
 	keyfile << feat.size() << " " << desc[0].size() << endl;
 	for (size_t i = 0; i < feat.size(); ++i)
@@ -93,11 +95,27 @@ bool DescFeatConvert::WriteConvertedKey(std::string &s)
 
 bool DescFeatConvert::ConvertAll(std::vector<std::string> &vs)
 {
+	std::string key_txt_file = key_filepath + "key_list.key";
+	ofstream key_txt(key_txt_file, ios::trunc);
+	if (!key_txt.is_open())
+	{
+		cout << "Open key txt failed: " << key_txt_file << endl;
+		return 0;
+	}
+
 	for (size_t i = 0; i < vs.size(); ++i)
 	{
-		ReadDesc(desc_feat_filepath + vs[i]);
-		ReadFeat(desc_feat_filepath + vs[i]);
-		WriteConvertedKey(key_filepath + vs[i]);
+		//ReadDesc(desc_feat_filepath + vs[i]);
+		//ReadFeat(desc_feat_filepath + vs[i]);
+		//WriteConvertedKey(key_filepath, vs[i]);
+
+		string vs_name = vs[i];
+		vs_name.erase(vs_name.end() - 3, vs_name.end());
+		vs_name += "key";
+		key_txt << "/keys/db/" + vs_name << endl;
+		//key_txt << "/keys/query/" + vs_name << endl;
 	}
+	key_txt.close();
+	cout << "keyfile: " << key_txt_file << endl;
 	return 1;
 }

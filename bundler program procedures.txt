@@ -22,6 +22,27 @@ main()
 			BundlePickInitialPair(i_best, j_best, true);//挑选出最好的两张图
 				GetNumTrackMatches(i, j);//得到两幅图片中共同点的数目
 			SetupInitialCameraPair()
+				SetMatchesFromTracks(i_best, j_best)//从初始的两幅图像中选出matches
+				SetTracks(i_best);
+				SetTracks(j_best);
+				InitializeCameraParams(m_image_data[i_best], cameras[0]);
+				InitializeCameraParams(m_image_data[j_best], cameras[1]);
+				SetCameraConstraints(i_best, cameras + 0);
+				SetCameraConstraints(j_best, cameras + 1);
+				
+				EstimateRelativePose2(i_best, j_best, cameras[0], cameras[1]);
+					EstimatePose5Point();//知道内参数，用5点法估计姿态
+						compute_pose_ransac();
+							generate_Ematrix_hypotheses();
+					
+					Triangulate();//知道内参数，两个相机的姿态，和匹配的特征点，可以开始三角化出三维点了
+						/* Find the point with the smallest squared projection error */
+						triangulate();
+							/* Find the least squares result */
+							dgelsy_driver(A, b, x, 4, 3, 1);
+							/* Run a non-linear optimization to refine the result */
+							lmdif_driver(triangulation_residual, 4, 3, x, 1.0e-10);
+							
 			DumpOutputFile(..."bundle.init.out"...)
 			
 			RunSFM();/* Run sfm for the first time */
